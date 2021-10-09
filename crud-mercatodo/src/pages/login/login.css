@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  background: rgb(30, 93, 121);
+  /* background: linear-gradient(180deg, rgb(69,143,178), white); */
+}
+.firstContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    border: 1px solid blue;
+    padding: 40px;
+    font-size: 20px;
+    color: white;
+    /* background-image: var(--bs-gradient); */
+  }
+  
+.secondContainer{
+    text-align: center;
+  }
+
