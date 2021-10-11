@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import NavBar from '../../components/navbar/NavBar'
+import Products from '../../components/products/Products';
 const cookies = new Cookies();
 
 class Admin extends Component {
@@ -30,8 +31,7 @@ class Admin extends Component {
         console.log('username: '+cookies.get('username'));
         return (
             <div>
-                <NavBar/>
-                Menu Principal
+                <Products/>
                 <br />
                 <button onClick={()=>this.logOut()}>Cerrar Sesión</button>
             </div>
