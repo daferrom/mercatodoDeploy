@@ -9,4 +9,5 @@ class Products(models.Model):
     pro_description = models.TextField()
     pro_category = models.CharField(max_length=45)
 
+#class User(models.Model):
 
