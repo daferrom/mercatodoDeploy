@@ -415,8 +415,7 @@ class Products extends React.Component {
                             </Button>
                         </ModalFooter>
                     </Modal>
-                </div>
-                <Footer/>
+                </div>  
             </>
         );
     }

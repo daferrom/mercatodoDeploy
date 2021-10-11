@@ -1,0 +1,59 @@
+.App {
+    text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(5, 51, 94);
+}
+header {
+    display: flex;
+    flex-direction: wrap;
+    color: #0c3c84;
+    width: 100%;
+    height: 4rem;
+    background-color: #f2b705;
+    font-size: 3rem;
+    padding-left: 1rem;
+}
+header h1 {
+    margin-right: 0;
+    width: 15px;
+    margin-left: 3rem;
+}
+header img {
+    height: 40px;
+    display: flex;
+    float: right;
+}
+.buscador {
+    color: white;
+    background-color: transparent;
+    flex-direction: wrap;
+}
+.buscador p {
+    font-size: 30px;
+}
+.Search {
+    font-size: 20px;
+}
+input {
+    float: right;
+    border-radius: 20px;
+}
+.all {
+    background: linear-gradient(to bottom, #458fb2, white);
+    height: 1000px;
+}
