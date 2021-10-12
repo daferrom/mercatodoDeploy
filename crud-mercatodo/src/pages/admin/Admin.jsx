@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
-import Footer from '../../components/footer/Footer';
-import NavBar from '../../components/navbar/NavBar'
 import Products from '../../components/products/Products';
-import User from '../../components/userview/User';
 const cookies = new Cookies();
 
 class Admin extends Component {
@@ -33,9 +30,8 @@ class Admin extends Component {
         console.log('username: '+cookies.get('username'));
         return (
             <div>
-                <User/>
+                <Products/>
                 <button onClick={()=>this.logOut()}>Cerrar Sesión</button>
-           
             </div>
         );
     }

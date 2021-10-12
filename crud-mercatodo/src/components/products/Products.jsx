@@ -1,7 +1,7 @@
-import React from "react";
+import React, {Component} from "react";
+import axios from 'axios';
 import "./products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import {
     Table,
     Button,
@@ -14,78 +14,69 @@ import {
 } from "reactstrap";
 import Footer from "../footer/Footer";
 
-const data = [
+/* const data = [
     {
-        id: 1,
-        Producto: "sachichas",
-        Provedor: "ranchera",
-        Cantidad: "23",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido",
-    },
-    {
-        id: 2,
-        Producto: "chorizo",
-        Provedor: "ranchera",
-        Cantidad: "23",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido",
-    },
-    {
-        id: 3,
-        Producto: "hamburguesa",
-        Provedor: "ranchera",
-        Cantidad: "23",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido",
-    },
-    {
-        id: 4,
-        Producto: "mortadela",
-        Provedor: "ranchera",
-        Cantidad: "23",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido",
-    },
-    {
-        id: 5,
-        Producto: "jamon",
-        Cantidad: "23",
-        Provedor: "ranchera",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido",
-    },
-    {
-        id: 6,
-        Producto: "jamon",
-        Provedor: "ranchera",
-        Cantidad: "23",
-        Fecha: "10/06/2021",
-        Descripcion: "comida embutida ",
-        Categoria: "embutido!",
-    },
-];
+        "id": 1,
+        "pro_name": "JABON DETERGENTE LIQUIDO",
+        "pro_provider": "COCO VARELA",
+        "pro_existences": 16,
+        "pro_date": "2017-10-25",
+        "pro_description": "2 X 3 LITROS PARA PRENDAS DELICADAS Detergente desarrollado para el lavado de prendas delicadas",
+        "pro_category": "Elementos de Aseo"
+      },
+      {
+        "id": 2,
+        "pro_name": "Detergente polvo jabón rey",
+        "pro_provider": "Dersa",
+        "pro_existences": 5,
+        "pro_date": "2019-03-15",
+        "pro_description": "Disfruta del mejor aroma del Detergente Dersa polvo bicarbonato + jabon rey x 6000g",
+        "pro_category": "Elementos de Aseo"
+      },
+      {
+        "id": 3,
+        "pro_name": "Jabon liquido vainilla coco",
+        "pro_provider": "Bacterion",
+        "pro_existences": 15,
+        "pro_date": "2019-10-20",
+        "pro_description": "Lleva tu Jabon liquido Bacterion vainilla coco x1000 ml y protegete de las bacterias durante el dia",
+        "pro_category": "Elementos de Aseo"
+      }
+]; */
 
-class Products extends React.Component {
-    state = {
-        data: data,
+
+class Products extends Component {
+   state = {
+        data: [],
+        status: false,
         modalActualizar: false,
         modalInsertar: false,
         form: {
             id: "",
-            Producto: "",
-            Provedor: "",
-            Fecha: "",
-            Cantidad: "",
-            Descripcion: "",
-            Categoria: "",
+            pro_name: "",
+            pro_provider: "",
+            pro_existences: "",
+            pro_date: "",
+            pro_description: "",
+            pro_category: "",
         },
     };
+    
+
+    getProducts = () => {
+        var url = 'http://apimercatodo.herokuapp.com/api';
+        var request ="";
+        axios.get(url + request).then(res => {
+            this.setState({
+                data: res.data
+                , status: true
+            });
+        });
+    }
+
+    componentDidMount =() => {
+        this.getProducts();
+    }
 
     mostrarModalActualizar = (dato) => {
         this.setState({
@@ -113,12 +104,12 @@ class Products extends React.Component {
         var arreglo = this.state.data;
         arreglo.map((registro) => {
             if (dato.id == registro.id) {
-                arreglo[contador].Producto = dato.Producto;
-                arreglo[contador].Provedor = dato.Provedor;
-                arreglo[contador].Cantidad = dato.Cantidad;
-                arreglo[contador].Fecha = dato.Fecha;
-                arreglo[contador].Descripcion = dato.Descripcion;
-                arreglo[contador].Categoria = dato.Categoria;
+                arreglo[contador].pro_name = dato.pro_name;
+                arreglo[contador].pro_provider = dato.pro_provider;
+                arreglo[contador].pro_existences = dato.pro_existences;
+                arreglo[contador].pro_date = dato.pro_date;
+                arreglo[contador].pro_description = dato.pro_description;
+                arreglo[contador].pro_category = dato.pro_category;
             }
             contador++;
         });
@@ -164,9 +155,6 @@ class Products extends React.Component {
             <>
                 <header>
                     <h1>Mercatodo</h1>
-                    <a href="https://iconos8.es/icons/set/logout">
-                        <img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/58/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png" />
-                    </a>
                 </header>
                 <div className="all">
                     <Container>
@@ -202,12 +190,12 @@ class Products extends React.Component {
                                 {this.state.data.map((dato) => (
                                     <tr key={dato.id}>
                                         <td>{dato.id}</td>
-                                        <td>{dato.Producto}</td>
-                                        <td>{dato.Provedor}</td>
-                                        <td>{dato.Cantidad}</td>
-                                        <td>{dato.Fecha}</td>
-                                        <td>{dato.Descripcion}</td>
-                                        <td>{dato.Categoria}</td>
+                                        <td>{dato.pro_name}</td>
+                                        <td>{dato.pro_provider}</td>
+                                        <td>{dato.pro_existences}</td>
+                                        <td>{dato.pro_date}</td>
+                                        <td>{dato.pro_description}</td>
+                                        <td>{dato.pro_category}</td>
                                         <td>
                                             <Button
                                                 color="primary"
