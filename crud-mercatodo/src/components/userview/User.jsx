@@ -1,7 +1,6 @@
 import React from "react";
-import "./products.css";
+import "./user.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import {
     Table,
     Button,
@@ -71,7 +70,7 @@ const data = [
     },
 ];
 
-class Products extends React.Component {
+class User extends React.Component {
     state = {
         data: data,
         modalActualizar: false,
@@ -173,12 +172,7 @@ class Products extends React.Component {
                         <div className="buscador">
                             <br />
                             <p>Bienvenido Beto encuentra lo que necesitas</p>
-                            <Button
-                                color="success"
-                                onClick={() => this.mostrarModalInsertar()}
-                            >
-                                +Agregar producto
-                            </Button>
+                            
                             <input className="Search" type="search"></input>
                         </div>
 
@@ -193,8 +187,6 @@ class Products extends React.Component {
                                     <th>Fecha</th>
                                     <th>Descripcion</th>
                                     <th>Catergoria</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
 
@@ -208,28 +200,7 @@ class Products extends React.Component {
                                         <td>{dato.Fecha}</td>
                                         <td>{dato.Descripcion}</td>
                                         <td>{dato.Categoria}</td>
-                                        <td>
-                                            <Button
-                                                color="primary"
-                                                onClick={() =>
-                                                    this.mostrarModalActualizar(
-                                                        dato
-                                                    )
-                                                }
-                                            >
-                                                Editar
-                                            </Button>{" "}
-                                        </td>
-                                        <td>
-                                            <Button
-                                                color="danger"
-                                                onClick={() =>
-                                                    this.eliminar(dato)
-                                                }
-                                            >
-                                                Eliminar
-                                            </Button>
-                                        </td>
+                                        
                                     </tr>
                                 ))}
                             </tbody>
@@ -415,9 +386,9 @@ class Products extends React.Component {
                             </Button>
                         </ModalFooter>
                     </Modal>
-                </div>  
+                </div>
             </>
         );
     }
 }
-export default Products;
+export default User;
