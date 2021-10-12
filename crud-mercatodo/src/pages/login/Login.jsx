@@ -51,7 +51,7 @@ class Login extends Component {
                 alert(`Bienvenido ${reply.name} ${reply.first_lastname}`);
                 window.location.href="./admin";   //redirigir la pagina
             }else{
-                alert('El usuario o la contraseña no son correctos');
+                window.location.href="./user";   //redirigir la pagina
             }
         })
         .catch(error=>{
@@ -68,8 +68,7 @@ class Login extends Component {
     
     render() {
         return (
-    <>
-        
+    <div className="master">
         <NavBar />
         <div className="firstContainer">
             <div className="secondContainer">
@@ -97,7 +96,7 @@ class Login extends Component {
             </div>
         </div>
         <Footer/>
-      </>
+      </div>
         );
     }
 }

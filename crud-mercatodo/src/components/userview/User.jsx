@@ -163,9 +163,7 @@ class User extends React.Component {
             <>
                 <header>
                     <h1>Mercatodo</h1>
-                    <a href="https://iconos8.es/icons/set/logout">
-                        <img src="https://img.icons8.com/external-sbts2018-mixed-sbts2018/58/000000/external-logout-social-media-basic-1-sbts2018-mixed-sbts2018.png" />
-                    </a>
+
                 </header>
                 <div className="all">
                     <Container>
