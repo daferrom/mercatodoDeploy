@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*u$zl*8t-=$8em814e#ux+9r)o%+8#oer2mtrc+#=82yc1=x(g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api1mercatodo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -73,10 +73,10 @@ WSGI_APPLICATION = 'Project_API.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backen.mysql',ds
         'HOST':'localhost',
         'PORT': '3306',
         'USER':'root',
@@ -87,6 +87,19 @@ DATABASES = {
         }
     }   
 }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST':'bqksq48ykvd60fbtwaty-mysql.services.clever-cloud.com',
+        'PORT': '3306',
+        'USER':'uj0kct9kfeclowao',
+        'PASSWORD':'nMHnWplxGofTl06vWs1p',           
+        'NAME':'bqksq48ykvd60fbtwaty',
+        
+    }   
+}
+
 
 
 # Password validation
@@ -126,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

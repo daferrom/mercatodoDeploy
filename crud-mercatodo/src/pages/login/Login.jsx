@@ -6,9 +6,10 @@ import md5 from 'md5';
 import Cookies from 'universal-cookie';
 import NavBar from '../../components/navbar/NavBar';
 import Footer from '../../components/footer/Footer';
+import * as LogInServer from './LogInServer'
 
 //url para petición
-const baseUrl="http://localhost:3001/usuarios";
+const baseUrl="https://apimercatodo.herokuapp.com/api/users/";
 
 //guardar la var inicio de sesión
 const cookies = new Cookies();
@@ -34,8 +35,30 @@ class Login extends Component {
         console.log(this.state.form);
     }
 
-    //login= peticion tipo get=consultar info 
-    logIn=async()=>{
+    //login es un fucncion = peticion tipo get=consultar info 
+   
+    componentDidMount () {
+        fetch(baseUrl)
+        .then(response => console.log(response))
+    }
+     
+   
+   
+   
+    /*
+    logIn = async () => {
+        try {
+            const res = await ProductServer.listProducts();
+            const data = await res.json();
+            console.log(data);
+            //setProducts(res.data);
+        } catch(error){
+            console.log(error);
+        }
+    }
+    */
+    
+    /*logIn=async()=>{
         await axios.get(baseUrl, {params: {username: this.state.form.username, password: md5(this.state.form.password)}})
         .then(response=>{
             return response.data; //retornamos la data del api cuando el inicio de sesion es correcto
@@ -58,14 +81,14 @@ class Login extends Component {
             console.log(error);
         })
 
-    }
+    }*/
     //redirecciona a tabla de productos
-    componentDidMount() {
+    /*componentDidMount() {
         if(cookies.get('username')){
             window.location.href="./admin";
         }
     }
-    
+    */
     render() {
         return (
     <div className="master">

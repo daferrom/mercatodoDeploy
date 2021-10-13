@@ -1,0 +1,22 @@
+{
+    "usuarios":[
+        {
+            "id":1,
+            "nombre": "Pepito",
+            "apellido":"Perez",
+            "telefono": 123456789,
+            "cargo": "Administrador",
+            "username": "pperez",
+            "password": "827ccb0eea8a706c4c34a16891f84e7b"
+        },
+        {
+            "id":12,
+            "nombre": "Fernando",
+            "apellido":"Flores",
+            "telefono": 987654321,
+            "cargo": "Empleado",
+            "username": "fflores",
+            "password": "01cfcd4f6b8770febfb40cb906715822"
+        }
+    ]
+}

@@ -12,96 +12,106 @@ import {
     FormGroup,
     ModalFooter,
 } from "reactstrap";
-import Footer from "../footer/Footer";
+//import Footer from "../footer/Footer";
+import * as ProductServer from './ProductServer'
+import { useState } from "react";
+import { useEffect } from "react";
 
-/* const data = [
-    {
-        "id": 1,
-        "pro_name": "JABON DETERGENTE LIQUIDO",
-        "pro_provider": "COCO VARELA",
-        "pro_existences": 16,
-        "pro_date": "2017-10-25",
-        "pro_description": "2 X 3 LITROS PARA PRENDAS DELICADAS Detergente desarrollado para el lavado de prendas delicadas",
-        "pro_category": "Elementos de Aseo"
-      },
-      {
-        "id": 2,
-        "pro_name": "Detergente polvo jabón rey",
-        "pro_provider": "Dersa",
-        "pro_existences": 5,
-        "pro_date": "2019-03-15",
-        "pro_description": "Disfruta del mejor aroma del Detergente Dersa polvo bicarbonato + jabon rey x 6000g",
-        "pro_category": "Elementos de Aseo"
-      },
-      {
-        "id": 3,
-        "pro_name": "Jabon liquido vainilla coco",
-        "pro_provider": "Bacterion",
-        "pro_existences": 15,
-        "pro_date": "2019-10-20",
-        "pro_description": "Lleva tu Jabon liquido Bacterion vainilla coco x1000 ml y protegete de las bacterias durante el dia",
-        "pro_category": "Elementos de Aseo"
-      }
-]; */
+ 
 
 
-class Products extends Component {
-   state = {
-        data: [],
-        status: false,
-        modalActualizar: false,
-        modalInsertar: false,
-        form: {
-            id: "",
-            pro_name: "",
-            pro_provider: "",
-            pro_existences: "",
-            pro_date: "",
-            pro_description: "",
-            pro_category: "",
-        },
-    };
-    
+const Products = () => {
+    const [Products, setProducts] = useState([]) 
 
-    getProducts = () => {
-        var url = 'http://apimercatodo.herokuapp.com/api';
+    const initialstate = [
+        /*{
+            id: 1,
+            pro_name: "sachichas",
+            pro_provider: "ranchera",
+            pro_existences: "23",
+            pro_date: "10/06/2021",
+            pro_description: "comida embutida ",
+            pro_category: "embutido",
+        },*/
+    ]
+
+    const listProducts = async () => {
+        try {
+            const res = await ProductServer.listProducts();
+            const data = await res.json();
+            console.log(data);
+            //setProducts(res.data);
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        listProducts()
+    },[]);
+
+     
+    const [modalInsertar, setmodalInsertar] = useState(false)
+    const [modalActualizar, setModalActualizar] = useState(false)
+    const [status, setStatus] = useState(false)
+    let   [data, setData] = useState([]) 
+    const [form, setForm] = useState({
+            id: '',
+            pro_name: '',
+            pro_provider: '',
+            pro_existences: '',
+            pro_date: '',
+            pro_description: '',
+            pro_category: '',
+        })
+
+    const endpoint ='https://apimercatodo.herokuapp.com/api/products/'
+   
+    useEffect(() => {
+        listProducts()
+    },[])
+
+    /*
+    const fetchProducts = async () =>{
+        const response = await fetch.get(endpoint)
+        const resJson = await response.json()
+        setData( data = resJson)
+        console.log(resJson)
+    }
+    */
+
+    /*
+    const getProducts = () => {
+        var url = 'https://apimercatodo.herokuapp.com/api/products/';
         var request ="";
         axios.get(url + request).then(res => {
-            this.setState({
-                data: res.data
-                , status: true
-            });
+            setData({...data, res.data});
+            setStatus({...status, true})
         });
     }
-
-    componentDidMount =() => {
-        this.getProducts();
-    }
-
-    mostrarModalActualizar = (dato) => {
-        this.setState({
-            form: dato,
-            modalActualizar: true,
-        });
+    */
+    const mostrarModalActualizar = (dato, modalActualizar) => {
+        setForm({...form, dato});
+        setModalActualizar(modalActualizar, true );
     };
 
-    cerrarModalActualizar = () => {
-        this.setState({ modalActualizar: false });
+    const cerrarModalActualizar = () => {
+        setModalActualizar(modalActualizar, false);
     };
 
-    mostrarModalInsertar = () => {
-        this.setState({
+    const mostrarModalInsertar = () => {
+        setmodalInsertar({
             modalInsertar: true,
         });
     };
 
-    cerrarModalInsertar = () => {
-        this.setState({ modalInsertar: false });
+    const cerrarModalInsertar = () => {
+        setmodalInsertar(modalInsertar, false);
     };
 
-    editar = (dato) => {
+    const editar = (dato) => {
         var contador = 0;
-        var arreglo = this.state.data;
+        var arreglo = data;
         arreglo.map((registro) => {
             if (dato.id == registro.id) {
                 arreglo[contador].pro_name = dato.pro_name;
@@ -113,44 +123,42 @@ class Products extends Component {
             }
             contador++;
         });
-        this.setState({ data: arreglo, modalActualizar: false });
+        setData({ ...data, arreglo});
+        setModalActualizar(modalActualizar, false );
     };
 
-    eliminar = (dato) => {
+    const eliminar = (dato) => {
         var opcion = window.confirm(
             "Estás Seguro que deseas Eliminar el elemento " + dato.id
         );
         if (opcion == true) {
             var contador = 0;
-            var arreglo = this.state.data;
+            var arreglo = data;
             arreglo.map((registro) => {
                 if (dato.id == registro.id) {
                     arreglo.splice(contador, 1);
                 }
                 contador++;
             });
-            this.setState({ data: arreglo, modalActualizar: false });
+            setData({ ...data, arreglo });
+            setModalActualizar(modalActualizar, false);
         }
     };
 
-    insertar = () => {
-        var valorNuevo = { ...this.state.form };
-        valorNuevo.id = this.state.data.length + 1;
-        var lista = this.state.data;
+    const insertar = () => {
+        var valorNuevo = { ...form };
+        valorNuevo.id = data.length + 1;
+        var lista = data;
         lista.push(valorNuevo);
-        this.setState({ modalInsertar: false, data: lista });
+        setmodalInsertar(modalInsertar, false);
+        setData({ ...data, lista });
     };
 
-    handleChange = (e) => {
-        this.setState({
-            form: {
-                ...this.state.form,
-                [e.target.name]: e.target.value,
-            },
-        });
+    const handleChange = (e) => {
+        setForm({...form,  [e.target.name]: e.target.value });
     };
 
-    render() {
+    
         return (
             <>
                 <header>
@@ -163,7 +171,7 @@ class Products extends Component {
                             <p>Bienvenido Beto encuentra lo que necesitas</p>
                             <Button
                                 color="success"
-                                onClick={() => this.mostrarModalInsertar()}
+                                onClick={() => mostrarModalInsertar()}
                             >
                                 +Agregar producto
                             </Button>
@@ -187,7 +195,7 @@ class Products extends Component {
                             </thead>
 
                             <tbody>
-                                {this.state.data.map((dato) => (
+                                {data.map((dato) => (
                                     <tr key={dato.id}>
                                         <td>{dato.id}</td>
                                         <td>{dato.pro_name}</td>
@@ -200,7 +208,7 @@ class Products extends Component {
                                             <Button
                                                 color="primary"
                                                 onClick={() =>
-                                                    this.mostrarModalActualizar(
+                                                    mostrarModalActualizar(
                                                         dato
                                                     )
                                                 }
@@ -212,7 +220,7 @@ class Products extends Component {
                                             <Button
                                                 color="danger"
                                                 onClick={() =>
-                                                    this.eliminar(dato)
+                                                    eliminar(dato)
                                                 }
                                             >
                                                 Eliminar
@@ -224,7 +232,7 @@ class Products extends Component {
                         </Table>
                     </Container>
 
-                    <Modal isOpen={this.state.modalActualizar}>
+                    <Modal isOpen={modalActualizar}>
                         <ModalHeader>
                             <div>
                                 <h3>Editar Registro</h3>
@@ -239,7 +247,7 @@ class Products extends Component {
                                     className="form-control"
                                     readOnly
                                     type="text"
-                                    value={this.state.form.id}
+                                    value={form.id}
                                 />
                             </FormGroup>
 
@@ -249,8 +257,8 @@ class Products extends Component {
                                     className="form-control"
                                     name="producto"
                                     type="text"
-                                    onChange={this.handleChange}
-                                    value={this.state.form.Producto}
+                                    onChange={handleChange}
+                                    value={form.pro_name}
                                 />
                             </FormGroup>
 
@@ -260,8 +268,8 @@ class Products extends Component {
                                     className="form-control"
                                     name="Provedor"
                                     type="text"
-                                    onChange={this.handleChange}
-                                    value={this.state.form.Provedor}
+                                    onChange={handleChange}
+                                    value={form.pro_provider}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -270,8 +278,8 @@ class Products extends Component {
                                     className="form-control"
                                     name="Categoria"
                                     type="text"
-                                    onChange={this.handleChange}
-                                    value={this.state.form.Categoria}
+                                    onChange={handleChange}
+                                    value={form.pro_category}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -280,8 +288,8 @@ class Products extends Component {
                                     className="form-control"
                                     name="Producto"
                                     type="text"
-                                    onChange={this.handleChange}
-                                    value={this.state.form.Categoria}
+                                    onChange={handleChange}
+                                    value={form.pro_name}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -290,8 +298,8 @@ class Products extends Component {
                                     className="form-control"
                                     name="Provedor"
                                     type="text"
-                                    onChange={this.handleChange}
-                                    value={this.state.form.Categoria}
+                                    onChange={handleChange}
+                                    value={form.pro_provider}
                                 />
                             </FormGroup>
                         </ModalBody>
@@ -299,20 +307,20 @@ class Products extends Component {
                         <ModalFooter>
                             <Button
                                 color="primary"
-                                onClick={() => this.editar(this.state.form)}
+                                onClick={() => editar(form)}
                             >
                                 Editar
                             </Button>
                             <Button
                                 color="danger"
-                                onClick={() => this.cerrarModalActualizar()}
+                                onClick={() => cerrarModalActualizar()}
                             >
                                 Cancelar
                             </Button>
                         </ModalFooter>
                     </Modal>
 
-                    <Modal isOpen={this.state.modalInsertar}>
+                    <Modal isOpen={modalInsertar}>
                         <ModalHeader>
                             <div color="primary">
                                 <h3>Insertar Producto</h3>
@@ -327,7 +335,7 @@ class Products extends Component {
                                     className="form-control"
                                     readOnly
                                     type="text"
-                                    value={this.state.data.length + 1}
+                                    value={data.length + 1}
                                 />
                             </FormGroup>
 
@@ -337,7 +345,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Producto"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
 
@@ -347,7 +355,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Provedor"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -356,7 +364,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Cantidad"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -365,7 +373,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Fecha"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -374,7 +382,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Fecha"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -383,7 +391,7 @@ class Products extends Component {
                                     className="form-control"
                                     name="Fecha"
                                     type="text"
-                                    onChange={this.handleChange}
+                                    onChange={handleChange}
                                 />
                             </FormGroup>
                         </ModalBody>
@@ -391,13 +399,13 @@ class Products extends Component {
                         <ModalFooter>
                             <Button
                                 color="primary"
-                                onClick={() => this.insertar()}
+                                onClick={() => insertar()}
                             >
                                 Insertar
                             </Button>
                             <Button
                                 className="btn btn-danger"
-                                onClick={() => this.cerrarModalInsertar()}
+                                onClick={() => cerrarModalInsertar()}
                             >
                                 Cancelar
                             </Button>
@@ -406,6 +414,6 @@ class Products extends Component {
                 </div>  
             </>
         );
-    }
+    
 }
 export default Products;
