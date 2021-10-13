@@ -46,6 +46,12 @@ function Global() {
                         <div className="buscador">
                             <br />
                             <p>Bienvenido encuentra lo que necesitas</p>
+                            <Button
+                                color="success"
+                                // onClick={() => this.mostrarModalInsertar()}
+                            >
+                                +Agregar producto
+                            </Button>
                             <input
                               type="text"
                               placeholder="Buscar"

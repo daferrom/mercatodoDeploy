@@ -65,7 +65,7 @@ class Products extends Component {
     
 
     getProducts = () => {
-        var url = 'https://cryptic-headland-77186.herokuapp.com/productos/';
+        var url = 'https://apimercatodo.herokuapp.com/api/products/';
         var request ='/products';
         axios.get(url + request).then(res => {
             this.setState({
