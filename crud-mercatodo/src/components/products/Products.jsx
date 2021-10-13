@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import Global from '../../'
 import "./products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -64,8 +65,8 @@ class Products extends Component {
     
 
     getProducts = () => {
-        var url = 'http://apimercatodo.herokuapp.com/api';
-        var request ="";
+        var url = 'https://cryptic-headland-77186.herokuapp.com/productos/';
+        var request ='/products';
         axios.get(url + request).then(res => {
             this.setState({
                 data: res.data
@@ -74,7 +75,7 @@ class Products extends Component {
         });
     }
 
-    componentDidMount =() => {
+     componentDidMount =() => {
         this.getProducts();
     }
 
