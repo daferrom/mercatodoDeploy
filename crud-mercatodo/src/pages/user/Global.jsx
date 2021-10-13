@@ -6,11 +6,7 @@ import {
     Table,
     Button,
     Container,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    FormGroup,
-    ModalFooter,
+    
 } from "reactstrap";
 
 const baseUrl='https://apimercatodo.herokuapp.com/api/products/'
