@@ -19,8 +19,8 @@ const baseUrl='https://apimercatodo.herokuapp.com/api/products/'
 function Global() {
 
   const [data, setData]=useState([]);
-
-
+  const [search, setSearch] = useState("");
+ 
   const peticionGet=async()=>{
     await axios.get(baseUrl)
     .then(response=>{
@@ -32,6 +32,10 @@ function Global() {
     await peticionGet();
   },[])
 
+  const filteredProducts = data.filter(dato => {
+        return dato.pro_name.toLowerCase().includes(search.toLowerCase())
+    }  )
+  
  return (
            <>
                 <header>
@@ -42,13 +46,11 @@ function Global() {
                         <div className="buscador">
                             <br />
                             <p>Bienvenido encuentra lo que necesitas</p>
-                            {/* <Button
-                                color="success"
-                                onClick={() => this.mostrarModalInsertar()}
-                            >
-                                +Agregar producto
-                            </Button> */}
-                            <input className="Search" type="search"></input>
+                            <input
+                              type="text"
+                              placeholder="Buscar"
+                              onChange={(e) => setSearch(e.target.value)}
+                            />
                         </div>
 
                         <br />
@@ -68,7 +70,7 @@ function Global() {
                             </thead>
 
                             <tbody>
-                                {data.map(dato =>(
+                                {filteredProducts.map(dato =>(
                                     <tr key={dato.id}>
                                         <td>{dato.id}</td>
                                         <td>{dato.pro_name}</td>
