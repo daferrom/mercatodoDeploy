@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/mercatodoDeploy/static/css/main.97ab934d.chunk.css",
-    "main.js": "/mercatodoDeploy/static/js/main.8804237f.chunk.js",
-    "main.js.map": "/mercatodoDeploy/static/js/main.8804237f.chunk.js.map",
+    "main.js": "/mercatodoDeploy/static/js/main.dc66103f.chunk.js",
+    "main.js.map": "/mercatodoDeploy/static/js/main.dc66103f.chunk.js.map",
     "runtime-main.js": "/mercatodoDeploy/static/js/runtime-main.71c38a86.js",
     "runtime-main.js.map": "/mercatodoDeploy/static/js/runtime-main.71c38a86.js.map",
     "static/css/2.0f1110e3.chunk.css": "/mercatodoDeploy/static/css/2.0f1110e3.chunk.css",
-    "static/js/2.e3828559.chunk.js": "/mercatodoDeploy/static/js/2.e3828559.chunk.js",
-    "static/js/2.e3828559.chunk.js.map": "/mercatodoDeploy/static/js/2.e3828559.chunk.js.map",
+    "static/js/2.1b46009f.chunk.js": "/mercatodoDeploy/static/js/2.1b46009f.chunk.js",
+    "static/js/2.1b46009f.chunk.js.map": "/mercatodoDeploy/static/js/2.1b46009f.chunk.js.map",
     "index.html": "/mercatodoDeploy/index.html",
     "static/css/2.0f1110e3.chunk.css.map": "/mercatodoDeploy/static/css/2.0f1110e3.chunk.css.map",
     "static/css/main.97ab934d.chunk.css.map": "/mercatodoDeploy/static/css/main.97ab934d.chunk.css.map",
-    "static/js/2.e3828559.chunk.js.LICENSE.txt": "/mercatodoDeploy/static/js/2.e3828559.chunk.js.LICENSE.txt"
+    "static/js/2.1b46009f.chunk.js.LICENSE.txt": "/mercatodoDeploy/static/js/2.1b46009f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.71c38a86.js",
     "static/css/2.0f1110e3.chunk.css",
-    "static/js/2.e3828559.chunk.js",
+    "static/js/2.1b46009f.chunk.js",
     "static/css/main.97ab934d.chunk.css",
-    "static/js/main.8804237f.chunk.js"
+    "static/js/main.dc66103f.chunk.js"
   ]
 }
