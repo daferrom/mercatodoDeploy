@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from 'axios';
+import Global from '../../'
 import "./products.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -17,6 +18,7 @@ import * as ProductServer from './ProductServer'
 import { useState } from "react";
 import { useEffect } from "react";
 
+<<<<<<< HEAD
  
 
 
@@ -77,6 +79,21 @@ const Products = () => {
         const resJson = await response.json()
         setData( data = resJson)
         console.log(resJson)
+=======
+    getProducts = () => {
+        var url = 'https://cryptic-headland-77186.herokuapp.com/productos/';
+        var request ='/products';
+        axios.get(url + request).then(res => {
+            this.setState({
+                data: res.data
+                , status: true
+            });
+        });
+    }
+
+     componentDidMount =() => {
+        this.getProducts();
+>>>>>>> e6df3a7369ffe52785ec20040f39131c1af415c6
     }
     */
 
