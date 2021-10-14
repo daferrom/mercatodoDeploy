@@ -24,9 +24,12 @@ function Global() {
     })
   }
   
-  useEffect(async()=>{
+
+  const bring=async()=>{
     await peticionGet();
-  },[])
+  }
+
+  useEffect (bring)
 
   const filteredProducts = data.filter(dato => {
         return dato.pro_name.toLowerCase().includes(search.toLowerCase())
