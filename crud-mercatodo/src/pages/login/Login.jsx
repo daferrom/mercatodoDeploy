@@ -6,10 +6,10 @@ import md5 from 'md5';
 import Cookies from 'universal-cookie';
 import NavBar from '../../components/navbar/NavBar';
 import Footer from '../../components/footer/Footer';
-//import * as LogInServer from './LogInServer'
+import * as LogInServer from './LogInServer'
 
 //url para petición
-const baseUrl="http://localhost:3001/usuarios";;
+const baseUrl="http://localhost:3001/usuarios";
 
 //guardar la var inicio de sesión
 const cookies = new Cookies();
