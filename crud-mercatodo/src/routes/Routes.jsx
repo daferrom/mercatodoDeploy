@@ -6,13 +6,13 @@ import Login from '../pages/login/Login';
 
 const Routes = () => {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+         
             <Switch>
                 <Route exact path="/" component={Login}/>
-                <Route path="/admin" component={Admin}/>
-                <Route path="/user" component={props => <User {...props}/>}/>
+                <Route exact path="/admin" component={Admin}/>
+                <Route exact path="/user" component={props => <User {...props}/>}/>
             </Switch>
-        </BrowserRouter>
+
     )
 }
 
