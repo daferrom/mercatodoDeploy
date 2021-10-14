@@ -6,7 +6,7 @@ import Login from '../pages/login/Login';
 
 const Routes = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
             <Route exact path="/" component={Login}/>
             <Route exact path="/admin" component={Admin}/>
