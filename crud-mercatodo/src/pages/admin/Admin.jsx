@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
-import Products from '../../components/products/Products'
 import Global from '../user/Global'
 
 const cookies = new Cookies();

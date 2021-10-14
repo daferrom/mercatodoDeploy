@@ -6,11 +6,7 @@ import {
     Table,
     Button,
     Container,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    FormGroup,
-    ModalFooter,
+    
 } from "reactstrap";
 
 const baseUrl='https://apimercatodo.herokuapp.com/api/products/'
@@ -28,9 +24,12 @@ function Global() {
     })
   }
   
-  useEffect(async()=>{
+
+  const bring=async()=>{
     await peticionGet();
-  },[])
+  }
+
+  useEffect (bring)
 
   const filteredProducts = data.filter(dato => {
         return dato.pro_name.toLowerCase().includes(search.toLowerCase())
@@ -47,6 +46,12 @@ function Global() {
                         <div className="buscador">
                             <br />
                             <p>Bienvenido encuentra lo que necesitas</p>
+                            <Button
+                                color="success"
+                                // onClick={() => this.mostrarModalInsertar()}
+                            >
+                                +Agregar producto
+                            </Button>
                             <input
                               type="text"
                               placeholder="Buscar"

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {Component} from "react";
 import axios from 'axios';
 import Global from '../../'
@@ -434,3 +435,5 @@ const Products = () => {
     
 }
 export default Products;
+=======
+>>>>>>> 66163ea3ff9a46ca5f7e51ea17ffa56083c6ea8c
